@@ -11,6 +11,8 @@
 //console.log(typeof(userInput));
 //console.log(typeof(oPerson));
 
+// comment for GitHub push testing 2019.11.15
+
 var location1 = 3;
 var location2 = 4;
 var location3 = 5;
