@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+</head>
+<body>
+    <script>
+        /*============ Function dedcribe ==========
+        | 撰寫一個判斷字串是否為迴文的方法  palindrome 
+        | 並新增為String的屬性
+        =========================================*/
+        String.prototype.palindrome = function (){
+            // 字串長度的一半 即為需比較次數
+            // this 指向叫用此function時之字串
+            var times = Math.ceil(this.length/2);
+            console.log("The half length is: " + times);
+            
+            for(var i = 0; i < times; i++){
+                let head = this[i];
+                console.log("Head is: " + head);
+                
+                let index = this.length - 1 -i;
+                console.log("Index is: " + index);
+                
+                let tail = this[index];
+                console.log("Tail is: " + tail);
+                
+                if(head !== tail){
+                   return false;
+                }
+            }
+            return true;
+        }
+        
+        var testString = "abccba";
+        // 調用寫好的function 若為迴文 則return true
+        console.log(testString.palindrome());
+
+    </script>
+</body>
+</html>

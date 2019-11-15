@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+</head>
+<body>
+    <script>
+        /*=============== Function describe /*===============
+        | 了解調用closure時 對其操作環境的自由變數存取的機制
+        | (Closure = function + 操作環境)
+        | p.499, 2019.10.30
+        /*=================================================*/
+        
+        function makeCount(){
+            var count = 0;
+            
+            function counter(){
+                
+                count += 1;
+                return count;
+            }
+            // 回傳一個 未調用的閉包函式
+            return counter;
+        }
+        
+        var doCount = makeCount();
+        
+        // 於log內 多次調用doCount, 累加 操作環境的 count值
+        console.log(doCount()); // 輸出 : 1
+        console.log(doCount()); // 輸出 : 2
+        console.log(doCount()); // 輸出 : 3
+        console.log(doCount()); // 輸出 : 4
+        
+        // 外部無法存取Closure的自由變數count, 輸出 : undefined
+        console.log(makeCount.count);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <style>
+        body, button{ margin: 10px; }
+        div { padding: 10px; }
+    </style>
+    <script>
+        // 非閉包原版
+//        var count = 0;
+//        
+//        window.onload = function(){
+//            var button = document.getElementById("clickme");
+//            button.onclick = handleClick;
+//        }
+//        
+//        function handleClick(){
+//            var message = "You clicked me ";
+//            var div = document.getElementById("message");
+//            count ++;
+//            div.innerHTML = message + count + " times.";
+//        }
+        
+        /*=============== Function describe /*===============
+        | 以事件處理程序 建立閉包
+        | p.504, 2019.11.01
+        /*=================================================*/
+        window.onload = function(){
+            // *** Tip: 將閉包函式會用到的參數 都宣告在其外層 形成其操作環境 ***
+            var count = 0;
+            var div = document.getElementById("message");
+            var message = "You clicked me ";
+            
+            var button = document.getElementById("clickme");
+            button.onclick = function(){
+                count ++;
+                div.innerHTML = message + count + " times!";
+            };
+        }
+        
+    </script>
+</head>
+<body>
+    <button id="clickme">Click me!</button>
+    <div id="message"></div>
+</body>
+</html>

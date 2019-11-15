@@ -1,0 +1,69 @@
+<!--
+
+此範例為JS對HTML上的img元素做onclick事件的監聽
+
+/* -------- Function describe -----------
+| 透過點擊圖片做圖片的切換 模糊<==>清晰       |
+| 1.onclick監聽圖片                       | 
+| 2.點擊圖片後改變圖片 模糊->清晰            |
+|  (through change img src)              | 
+| 3.過 N 秒後自動變回來 清晰->模糊           |
+|  (through the function setTimeout)     |  
+---------------------------------------*/
+
+講到 非同步處理事件 (Asyncgronous) <====> 就想到 事件處理程序
+
+-->
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Zero Image</title>
+    <style> 
+        body { margin : 50px; }
+        img  { margin : 10px; }
+    </style>
+    <script> 
+        
+        window.onload = init;
+        
+        function init () {
+            var image = document.getElementsByTagName("img");
+            for(var i = 0; i < image.length; i++){
+                image[i].onclick = showAnswer;
+            }
+        }
+        
+        // 觸發 onclick 時 會產生一個事件的"物件" eventObj => 傳給showAnswer
+        function showAnswer(eventObj){
+            // 先抓出被點擊的元素
+            var image = eventObj.target;
+            var name = image.id;
+            name = name + ".jpg"
+            // 修改該元素的src
+            image.src = name;
+            
+            //p501 TODO: 如何改成closure, 不傳入第三個引數?
+            setTimeout(reblur, 2000, image);
+        }
+        
+        // setTimeout 有將被點擊的元素 "image" 傳進來
+        function reblur (eventObj) {
+            var name = eventObj.id;
+            name = name + "blur.jpg"
+            // 修改該元素的src
+            eventObj.src = name;
+        }
+        
+    </script>
+</head>
+<body>
+    <img id="zero" src="zeroblur.jpg">
+    <img id="one" src="oneblur.jpg">
+    <img id="two" src="twoblur.jpg">
+    <img id="three" src="threeblur.jpg">
+    <img id="four" src="fourblur.jpg">
+    <img id="five" src="fiveblur.jpg">
+</body>
+</html>

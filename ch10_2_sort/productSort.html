@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+</head>
+<body>
+    <script>
+        var products = [{name: "AAA", calories: 170, sold: 8200},
+                        {name: "BBB", calories: 129, sold: 12201},
+                        {name: "CCC", calories: 156, sold: 4456},
+                        {name: "DDD", calories: 189, sold: 9023},
+                        {name: "EEE", calories: 111, sold: 25678}];
+        
+        // products.sort(compareSold) 的sort會抓products裡的兩個元素 丟給compareSold去運行
+        // 而products的元素為物件, 所以傳進compareSold的兩個引數皆為Object
+        function compareSold(Obj1, Obj2){
+            // 回傳值大於0時 Obj1.sold會被放到右邊去, 所以結果為升序排序
+            return Obj1.sold - Obj2.sold;
+        }
+        
+        function printProducts(products){
+            for(var i = 0; i < products.length; i++){
+                console.log("The product " + products[i].name + 
+                            ", calories is " + products[i].calories + 
+                            ", sold is " + products[i].sold + ".");
+            }
+        }
+        
+        // sort完的結果 會直接改變原本array的排序
+        products.sort(compareSold);
+    
+        //console.log(products);
+        printProducts(products);
+        
+    </script>
+</body>
+</html>

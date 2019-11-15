@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <style>
+        #bake{
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var cookies = {
+            instruction : "Preheat oven to 350 ...",
+            bake : function(time){
+                console.log("Baking the cookies...");
+                setTimeout(done, time);
+            }
+        };
+        
+        // assign the func. "init" to the onload attribute be an anonymous function expression
+        // assign the func. "handleButton" to the onclick attribute be an anonymous
+        window.onload = function(){
+            var button = document.getElementById("bake");
+            button.onclick = function(){
+                alert("Time to bake the cookies.");
+                cookies.bake(5000);
+            }  
+        }
+        
+        function done(){
+            alert("Cookies are ready, take them out to cool.");
+            console.log("Cooling the cookies.");
+            // assign the func. "cool" to setTimeout function be an anonymous
+            setTimeout(function(){
+                            alert("Cookies are cool, time to eat!!");
+                        }, 3000);
+        }
+        
+    </script>
+    
+    <div>
+        <input type="button" id="bake" value="Cooking Button">
+    </div>
+</body>
+</html>

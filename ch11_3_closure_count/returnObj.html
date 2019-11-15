@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>This Funtion will return an Object from a Closure.</title>
+</head>
+<body>
+    <script>
+        /*=============== Function describe /*===============
+        | 了解調用"物件"的 closure function時 對其操作環境的自由變數存取的機制
+        | (Closure = function + 操作環境)
+        | p.500, exmple (30分), 2019.10.30
+        /*=================================================*/
+
+        function makeCounter(){
+            var counter = 0;
+            // Closure function is an attribute of an Object
+            return {
+                // test variable
+                a: counter,
+                increment : function(){
+                    counter += 1;
+                    console.log(counter);
+                    return counter;
+                }
+            };
+        }
+        
+        // 調用 makeCounter 並接收回傳的"物件"
+        var count = makeCounter();
+        
+        // 調用 物件的 increment 函式, 對自由變數 counter做累加
+        console.log(count.increment());
+        console.log(count.increment());
+        console.log(count.increment());
+        console.log(count.increment());
+        
+        // call by value, so print out the value is still 0
+        console.log(count.a);
+    </script>
+</body>
+</html>

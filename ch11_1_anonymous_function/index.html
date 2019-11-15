@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+</head>
+<body>
+    <script>
+        var cookies = {
+            instruction : "Preheat oven to 350 ...",
+            bake : function(time){
+                console.log("Baking the cookies...");
+                setTimeout(done, time);
+            }
+        };
+        
+        window.onload = init;
+        
+        function init (){
+            var button = document.getElementById("bake");
+            button.onclick = handleButton;
+        }
+        
+        function handleButton(){
+            alert("Time to bake the cookies.");
+            cookies.bake(5000);
+        }
+        
+        function done(){
+            alert("Cookies are ready, take them out to cool.");
+            console.log("Cooling the cookies.");
+            
+            var cool = function(){
+                alert("Cookies are cool, time to eat!!");  
+            };
+            
+            setTimeout(cool, 3000);
+        }
+        
+    </script>
+    
+    <div>
+        <input type="button" id="bake" value="Cooking Button">
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+</head>
+<body>
+    <script>
+        /* ==================== Function describe ====================
+        | 用以了解 nested function 抓取參數的作用域
+        | ==> 到最近的一層的 Function 內抓, 若抓不到則會到 Global scope 找
+        | Note: P.489, 再參考 P.491 了解何謂 "區域變數操作環境"
+        ============================================================*/
+        var jsutAvar = "I'm Global!!"
+        
+        function whereAreYou (){
+            var justAvar = "I'm Local!!";
+            
+            function inner(){
+                return justAvar;
+            }
+            // 回傳有調用的 inner function
+            // return inner();
+            
+            // 回傳未調用的 inner
+            return inner;
+        }
+
+        // 接收未調用的 inner function (即 inner reference)
+        var innerFunction = whereAreYou();
+        var result = innerFunction();
+        
+        console.log(result);
+    </script>
+</body>
+</html>

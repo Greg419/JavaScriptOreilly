@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <style>
+/*
+        #map{
+            width: 500px;
+            height: 500px;
+        }
+*/
+        #coords{
+            font-family: "標楷體";
+        }
+    </style>
+    <script>
+        window.onload = init;
+        
+        function init(){
+            var map = document.getElementById("map");
+            // 監聽滑鼠移動到圖片上的事件
+            map.onmousemove = showCoords;
+        }
+        
+        function showCoords(eventObj){
+            var coords = document.getElementById("coords");
+            var x = eventObj.clientX;
+            var y = eventObj.clientY;
+            coords.innerHTML = "Map coordinates is: " + x + ", " + y;
+            
+            if(eventObj.clientX == 200 && eventObj.clientY == 190){
+               alert("You got the treasure's coordinates!!!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <img id="map" src="map.jpg">
+    <p id="coords">Move Mouse to find coordinates....</p>
+</body>
+</html>

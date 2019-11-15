@@ -1,0 +1,72 @@
+<script>
+    // Simple Object construction example, p514
+    // 2019.11.05
+    var cadiParams = {
+        make : "GM",
+        modle : "Cadillac",
+        year: 1955,
+        color : "tan",
+        passengers : 5,
+        convertible : false,
+        mileage : 12892
+    };
+    
+    // 將物件做為引數傳入 以設定建構程序的屬性
+    function Car(params){
+        this.make = params.make;
+        this.model = params.model;
+        this.year = params.year;
+        this.color = params.color;
+        this.passengers = params.passengers;
+        this.convertible = params.convertible;
+        this.mileage = params.mileage;
+        this.started = false;
+        
+        this.start = function(){
+            this.started = true;
+        }
+        
+        this.stop = function(){
+            this.started = false;
+        }
+        
+        this.drive = function(){
+            if(this.started){
+                alert("Zoom Zoom!!");
+            }else{
+                alert("You need to start the engine first.");
+            }
+        }
+    };
+    
+    // 新增原型的屬性
+    Car.prototype.habbit = "Play ball.";
+    // 若忘記用prototype存取原型 繼承它的物件存取habbit時 值會是undefined
+    
+    var cadi = new Car(cadiParams);
+    
+    // 新增cadi的屬性
+    cadi.name = "testName";
+    cadi.speedMode = function(){
+        if(this.started){
+                alert("Change to high speed!!");
+            }else{
+                alert("You need to start the engine before change mode.");
+            }
+    };
+    
+    console.log("This car is made by " + cadi.make + ".");
+    console.log("This car name is " + cadi.name + ".");
+    // 若忘記用prototype來設定原型 印出來的值會是undefined
+    console.log("Cadi's habbit is " + cadi.habbit + ".");
+    
+    cadi.start();
+    cadi.drive();
+    cadi.drive();
+    cadi.speedMode();
+    
+    cadi.stop();
+    cadi.drive();
+    cadi.speedMode();
+    
+</script>
